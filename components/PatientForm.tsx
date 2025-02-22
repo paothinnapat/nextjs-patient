@@ -45,21 +45,39 @@ export default function PatientForm({ onChange }: PatientFormProps) {
     })
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    onChange({ ...formData, [name]: value })
-    socket.emit("update-form", { ...formData, [name]: value })
+    const newData = { ...formData, [name]: value }
+    setFormData(newData)
+    onChange(newData)
+
+    // Send update to SSE endpoint
+    await fetch("/api/updates", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newData),
+    })
   }
 
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    onChange({ ...formData, [name]: value })
-    socket.emit("update-form", { ...formData, [name]: value })
+  const handleSelectChange = async (name: string, value: string) => {
+    const newData = { ...formData, [name]: value }
+    setFormData(newData)
+    onChange(newData)
+
+    // Send update to SSE endpoint
+    await fetch("/api/updates", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newData),
+    })
   }
 
   return (
-    <form className="space-y-4">
+    <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="firstName">First Name</Label>
@@ -157,4 +175,3 @@ export default function PatientForm({ onChange }: PatientFormProps) {
     </form>
   )
 }
-
