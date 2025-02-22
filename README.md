@@ -18,8 +18,8 @@ This project is a real-time patient input form and staff view system built with 
 ## Getting Started
 
 1. Clone the repository
-2. Install dependencies: \`npm install\`
-3. Run the development server: \`npm run dev\`
+2. Install dependencies: ```npm install```
+3. Run the development server: ```npm run dev```
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
 ## Project Structure
@@ -30,7 +30,7 @@ This project is a real-time patient input form and staff view system built with 
 
 ## Deployment
 
-This project is deployed on Vercel. You can view the live application at [insert your Vercel deployment URL here].
+This project is deployed on Vercel. You can view the live application at (https://v0-real-time-patient-form.vercel.app/).
 
 ## Future Improvements
 
@@ -38,4 +38,8 @@ This project is deployed on Vercel. You can view the live application at [insert
 - Add more detailed styling for better responsiveness
 - Implement error handling and loading states
 - Add indicators for patient activity (submitted, actively filling, inactive)
+
+## Current Issues
+
+- If input form doesn't reflect on real-time in staff view page, please try run this project on your local
 
